@@ -1,11 +1,10 @@
-import React from 'react';
 import { FilterInput } from './Filter.styled';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { setFilter } from 'redux/filterSlice';
-import { getFilter } from 'redux/selectors';
+import debounce from 'lodash.debounce';
 
 export default function Filter() {
-  const filter = useSelector(getFilter);
+  // const filter = useSelector(getFilter);
 
   const dispatch = useDispatch();
 
@@ -15,10 +14,9 @@ export default function Filter() {
 
   return (
     <FilterInput
-      name="filter"
       type="text"
-      value={filter}
-      onChange={handleChange}
+      placeholder="search by name..."
+      onChange={debounce(handleChange, 500)}
     ></FilterInput>
   );
 }
