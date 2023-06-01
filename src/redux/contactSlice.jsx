@@ -28,10 +28,7 @@ const handleSuccessDelete = (state, { payload }) => {
 };
 
 const handleSuccessAdd = (state, { payload }) => {
-  console.log(state);
-  console.log(payload);
   state.items.push(payload);
-
   utilsStateFnct(state);
 };
 

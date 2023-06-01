@@ -5,7 +5,6 @@ import {
   FormButton,
 } from './ContactsForm.styled';
 import { useDispatch, useSelector } from 'react-redux';
-import { createContact } from 'redux/contactSlice';
 import { getContact } from 'redux/selectors';
 import { addContact } from 'redux/operations';
 
@@ -14,11 +13,11 @@ export const ContactsForm = () => {
 
   const dispatch = useDispatch();
 
-  // const handleAddContact = ({ name, number }) => {
-  //   contacts.filter(contact => contact.name === name).length
-  //     ? alert(` is already in contact`)
-  //     : dispatch(createContact({ name, number }));
-  // };
+  const handleAddContact = ({ name, phone }) => {
+    contacts.items.filter(contact => contact.name === name).length
+      ? alert(` is already in contact`)
+      : dispatch(addContact({ name, phone }));
+  };
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -28,14 +27,10 @@ export const ContactsForm = () => {
     const name = elements.name.value;
     const phone = elements.number.value;
 
-    const Arr = [name, phone];
+    handleAddContact({ name, phone });
 
-    dispatch(addContact({ ...Arr }));
-
-    // handleAddContact({ name, number });
-
-    // elements.name.value = '';
-    // elements.number.value = '';
+    elements.name.value = '';
+    elements.number.value = '';
   };
 
   return (
