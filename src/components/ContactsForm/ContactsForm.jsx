@@ -7,17 +7,18 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { createContact } from 'redux/contactSlice';
 import { getContact } from 'redux/selectors';
+import { addContact } from 'redux/operations';
 
 export const ContactsForm = () => {
   const contacts = useSelector(getContact);
 
   const dispatch = useDispatch();
 
-  const handleAddContact = ({ name, number }) => {
-    contacts.filter(contact => contact.name === name).length
-      ? alert(` is already in contact`)
-      : dispatch(createContact({ name, number }));
-  };
+  // const handleAddContact = ({ name, number }) => {
+  //   contacts.filter(contact => contact.name === name).length
+  //     ? alert(` is already in contact`)
+  //     : dispatch(createContact({ name, number }));
+  // };
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -25,12 +26,16 @@ export const ContactsForm = () => {
     const { elements } = e.target;
 
     const name = elements.name.value;
-    const number = elements.number.value;
+    const phone = elements.number.value;
 
-    handleAddContact({ name, number });
+    const Arr = [name, phone];
 
-    elements.name.value = '';
-    elements.number.value = '';
+    dispatch(addContact({ ...Arr }));
+
+    // handleAddContact({ name, number });
+
+    // elements.name.value = '';
+    // elements.number.value = '';
   };
 
   return (

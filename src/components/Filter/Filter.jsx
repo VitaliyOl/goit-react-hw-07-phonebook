@@ -1,10 +1,12 @@
 import { FilterInput } from './Filter.styled';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setFilter } from 'redux/filterSlice';
+
 import debounce from 'lodash.debounce';
+import { getContact } from 'redux/selectors';
 
 export default function Filter() {
-  // const filter = useSelector(getFilter);
+  const contacts = useSelector(getContact);
 
   const dispatch = useDispatch();
 
