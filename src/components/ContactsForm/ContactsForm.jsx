@@ -22,15 +22,27 @@ export const ContactsForm = () => {
   const handleSubmit = e => {
     e.preventDefault();
 
-    const { elements } = e.target;
+    const { name, phone } = e.target.elements;
 
-    const name = elements.name.value;
-    const phone = elements.number.value;
+    const data = {
+      name: name.value,
+      phone: phone.value,
+    };
 
-    handleAddContact({ name, phone });
+    handleAddContact(data);
 
-    elements.name.value = '';
-    elements.number.value = '';
+    name.value = '';
+    phone.value = '';
+
+    // const { elements } = e.target;
+
+    // const name = elements.name.value;
+    // const phone = elements.number.value;
+
+    // handleAddContact({ name, phone });
+
+    // elements.name.value = '';
+    // elements.number.value = '';
   };
 
   return (
@@ -41,18 +53,18 @@ export const ContactsForm = () => {
           <FormInput
             type="text"
             name="name"
-            pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-            title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+            // pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+            // title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
             required
           />
         </FormLabel>
         <FormLabel>
-          Number
+          Phone
           <FormInput
             type="tel"
-            name="number"
-            pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-            title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+            name="phone"
+            // pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+            // title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
             required
           />
         </FormLabel>
